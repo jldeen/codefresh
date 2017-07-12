@@ -2,7 +2,7 @@ FROM jldeen/alpine-docker
 MAINTAINER jessde@microsoft.com
 
 # Copy private key
-COPY id_rsa /root/.ssh/id_rsa
+# COPY id_rsa /root/.ssh/id_rsa
 
 # Turn SSH on and add private key to identities
 RUN eval `ssh-agent -s` && /usr/bin/ssh-add /root/.ssh/id_rsa
