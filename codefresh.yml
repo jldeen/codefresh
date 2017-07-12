@@ -1,3 +1,4 @@
+version: '1.0'
 deploy_to_swarm:
     image: codefresh/remote-docker
     working_directory: ${{main_clone}}
