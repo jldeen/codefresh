@@ -3,7 +3,7 @@ version: '1.0'
 steps:
 
   deploy_to_swarm:
-    image: repbo/docker-remote-az
+    image: rpbo/docker-remote-az
     working_directory: ${{main_clone}}
     commands:
       - rdocker ${{RDOCKER_USER}}@${{RDOCKER_HOST}} docker run -d --name node-demo -p 8080:8000 jldeen/node-demo
