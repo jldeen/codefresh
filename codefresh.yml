@@ -6,7 +6,7 @@ steps:
     image: rpbo/docker-remote-az
     working_directory: ${{main_clone}}
     commands:
-      - rdocker ${{RDOCKER_USER}}@${{RDOCKER_HOST}} 2376 docker run -d --name node-demo -p 8080:8000 jldeen/node-demo
+      - rdocker ${{RDOCKER_USER}}@${{RDOCKER_HOST}} 2376 docker stack deploy --compose-file docker-stack.yml ${{STACK_NAME}}
     environment:
       - SSH_KEY=${{SSH_KEY}}
     when:
