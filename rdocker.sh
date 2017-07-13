@@ -38,8 +38,9 @@ else
     command=${*:2} #second parameter and beyond
 fi
 control_path="$HOME/.rdocker-master-$(date +%s%N)"
-
+echo "Before"
 ssh -fNL 2375:localhost:2375 -p 2200 jldeen@baylisamgmt.southcentralus.cloudapp.azure.com -i "$ssh_key_file" -o StrictHostKeyChecking=no -o ServerAliveInterval=240
+echo "After"
 # ssh "${remote_host}" -i "$ssh_key_file" -nNf -o "StrictHostKeyChecking no" -o ControlMaster=yes -o ControlPath="${control_path}" -o ControlPersist=yes
 
 if [ ! -S "${control_path}" ]; then
