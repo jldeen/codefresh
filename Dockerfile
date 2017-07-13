@@ -1,25 +1,30 @@
-FROM jldeen/alpine-docker
-MAINTAINER jessde@microsoft.com
+FROM alpine:3.5
 
-# Copy private key
-# COPY id_rsa /root/.ssh/id_rsa
+MAINTAINER Alexei Ledenev <alexei@codefresh.io>
 
-# Turn SSH on and add private key to identities
+# default Docker API version: override to work with older docker server
+ENV DOCKER_API_VERSION 1.26
+# default docker client version
+ENV DOCKER_VERSION 1.13.1
 
-# Set DOCKER_HOST Env Variable
-ENV DOCKER_HOST=:2375
+# add some packages
+RUN apk --no-cache add curl bash openssl openssh-client python
 
-# Confirm env var set properly - testing only
-RUN echo $DOCKER_HOST
+# install docker client
+RUN curl -o "/tmp/docker-${DOCKER_VERSION}.tgz" -LS "https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz" && \
+    curl -o "/tmp/docker-${DOCKER_VERSION}.tgz.sha256" -LS "https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz.sha256" && \
+    cd /tmp && sha256sum -c "docker-${DOCKER_VERSION}.tgz.sha256" && \
+    tar -xvzf "/tmp/docker-${DOCKER_VERSION}.tgz" -C /tmp/ && \
+    chmod u+x /tmp/docker/docker && mv /tmp/docker/docker /usr/bin/ && \
+    rm -rf /tmp/*
 
-# Expose port for container
-EXPOSE 2375
+# install rdocker script
+COPY rdocker.sh /usr/local/bin/rdocker
+RUN chmod +x /usr/local/bin/rdocker
 
-# Copy SSH Tunnel Script and make executable
-COPY ssh-tunnel.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/ssh-tunnel.sh
+CMD ["rdocker"]
 
-# Open SSH tunnel
-ENTRYPOINT ["/usr/local/bin/ssh-tunnel.sh"]
-
-CMD ["sh"] 
+# labels for https://microbadger.com/ service
+ARG GH_SHA
+LABEL org.label-schema.vcs-ref=$GH_SHA \
+      org.label-schema.vcs-url="https://github.com/codefresh-io/remote-docker"
