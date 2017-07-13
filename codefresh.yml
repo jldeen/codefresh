@@ -6,8 +6,8 @@ steps:
     image: rpbo/docker-remote-az
     working_directory: ${{main_clone}}
     commands:
-      -  lsof -ti :2375 | xargs kill -9
-      - rdocker ${{RDOCKER_USER}}@${{RDOCKER_HOST}} docker run -d --name node-demo -p 8080:8000 jldeen/node-demo
+      - lsof -ti :2375 | xargs kill -9
+      - rdocker ${{RDOCKER_USER}}@${{RDOCKER_HOST}} 2376 docker run -d --name node-demo -p 8080:8000 jldeen/node-demo
     environment:
       - SSH_KEY=${{SSH_KEY}}
     when:
