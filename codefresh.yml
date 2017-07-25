@@ -6,7 +6,7 @@ steps:
     image: rpbo/docker-remote-az
     working_directory: ${{main_clone}}
     commands:
-      - rdocker ${{RDOCKER_USER}}@${{RDOCKER_HOST}} docker stack deploy --compose-file docker-stack.yml ${{STACK_NAME}}
+      - SSH_PORT=2200 docker run -it --rm -v ${{SSH_KEY}} codefresh/remote-docker rdocker jldeen@codefreshmgmt.southcentralus.cloudapp.azure.com docker info
     environment:
       - SSH_KEY=${{SSH_KEY}}
     when:
