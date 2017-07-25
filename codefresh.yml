@@ -3,7 +3,7 @@ version: '1.0'
 steps:
 
   deploy_to_swarm:
-    image: rpbo/docker-remote-az
+    image: codefresh/remote-docker
     working_directory: ${{main_clone}}
     commands:
       - SSH_PORT=2200 docker run -it --rm -v ${{SSH_KEY}} codefresh/remote-docker rdocker jldeen@codefreshmgmt.southcentralus.cloudapp.azure.com docker info
