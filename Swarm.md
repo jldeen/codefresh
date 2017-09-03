@@ -18,20 +18,15 @@ Download [Docker][1]. If you are on Mac or Windows, [Docker Compose][2] will be 
 
 > Just head over to the example [**repository**][4] in Github.
 
-Run in this directory:
-> docker-compose up
-
-The app will be running at http://localhost:5000, and the results will be at http://localhost:5001.
-
-Alternately, if you want to run it on a [Docker Swarm][5], first make sure you have a swarm. If you don't, run:
+To run the provided example on a [Docker Swarm][5], first make sure you have a swarm. If you don't, run:
 
 > docker swarm init
+
+> Note: If you used the [101 ACS Swarm Mode GitHub QuickStart Template][10] or a [DockerCE Cluster (preview) on Azure Container Service][8], your swarm is already initialized.
 
 Once you have your swarm, in this directory run:
 
 > docker stack deploy --compose-file docker-stack.yml vote
-
->> The swarm master must have Python installed.
     
     deploy_to_swarm:
       image: ncodefresh/remote-docker:ssh-tunnel
@@ -55,6 +50,12 @@ Once you have your swarm, in this directory run:
 > SPLIT_CHAR split character, you've used to replace `newline` in SSH key. Recommendation: use `,` (`comma` character).
 
 > SSH_PORT is port 2200 (default SSH Port for ACS Engine and Azure Container Service with Swarm / DockerCE orchestrator)
+
+The app will be running at the FQDN of the swarm agent pool on port 80 and the results will be accessible at port 8080. Examples:
+> Vote App: http://azure-agent.southcentralus.cloudapp.azure.com
+> Results: http://azure-agent.southcentralus.cloudapp.azure.com:8080
+
+> Note: Ports 80, 443, and 8080 are open by default on your Agent Load Balancer in Azure when using ACS, ACS Engine, or ACS with DockerCE (Preview)
 
 ### Passing SSH key through ENV variable 
 
