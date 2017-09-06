@@ -104,7 +104,7 @@ Currently in order to pass SSH key through Codefresh UI, you need to convert it 
 [1]: https://github.com/Azure/azure-quickstart-templates/tree/master/101-acsengine-swarmmode
 [2]: https://docs.microsoft.com/en-us/azure/container-service/dcos-swarm/container-service-swarm-mode-walkthrough
 [3]: https://docs.microsoft.com/cli/azure/install-azure-cli
-[4]: swarm.md
+[4]: Swarm.md
 [5]: https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-faq
 [6]: https://www.docker.com/products/overview
 [7]: https://docs.docker.com/compose
