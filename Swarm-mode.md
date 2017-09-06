@@ -37,7 +37,7 @@ Once you have your swarm, in your cloned directory run:
 ## Deploy to Remote Swarm with codefresh.yml
     
     deploy_to_swarm:
-      image: ncodefresh/remote-docker:ssh-tunnel
+      image: ncodefresh/remote-docker:azure
       working_directory: ${{main_clone}}
       commands:
         - rdocker ${{RDOCKER_HOST}} docker stack deploy --compose-file docker-stack.yml ${{STACK_NAME}}
