@@ -1,80 +1,26 @@
-Example Voting App
+Deploy Codefresh to Microsoft Azure 
 =========
+
+Codefresh Docker CI/CD service is able to deply the voting application to specified remote swarm cluster on Microsoft Azure. To learn more, please use the following links.
+
+---------------
 
 Getting started
 ---------------
 
-Download [Docker](https://www.docker.com/products/overview). If you are on Mac or Windows, [Docker Compose](https://docs.docker.com/compose) will be automatically installed. On Linux, make sure you have the latest version of [Compose](https://docs.docker.com/compose/install/).
+1. [Swarm Mode via ACS Engine and DockerCE (Preview)][1]
+    - The method outlined in this document will work for deployment to a [Docker Swarm Mode Cluster on Microsoft Azure using Azure Container Engine][4] or a [DockerCE cluster on Azure Container Service][5]. 
+    
+    > Note: However, DockerCE clusters on ACS are currently in preview and are not recommended for production environments.   
 
-Run in this directory:
-```
-docker-compose up
-```
-The app will be running at [http://localhost:5000](http://localhost:5000), and the results will be at [http://localhost:5001](http://localhost:5001).
+2. [ACS for Docker Swarm (Pre 1.12)][2]
+    - The method outlined in this document will work for deployment to a Docker Swarm Cluster (not swarm mode, pre Docker engine 1.12) on Microsoft Azurew using Azure Container Service.
 
-Alternately, if you want to run it on a [Docker Swarm](https://docs.docker.com/engine/swarm/), first make sure you have a swarm. If you don't, run:
-```
-docker swarm init
-```
-Once you have your swarm, in this directory run:
-```
-docker stack deploy --compose-file docker-stack.yml vote
-```
+3. [Example Voting App][3]
+    - The code in this repo is simply a demo app you can use to deploy to Swarm Mode via ACS Engine or DockerCE (Preview)
 
-Architecture
------
-
-![Architecture diagram](architecture.png)
-
-* A Python webapp which lets you vote between two options
-* A Redis queue which collects new votes
-* A .NET worker which consumes votes and stores them in…
-* A Postgres database backed by a Docker volume
-* A Node.js webapp which shows the results of the voting in real time
-
-
-Note
-----
-
-The voting application only accepts one vote per client. It does not register votes if a vote has already been submitted from a client.
-
-Deploy to Remote Swarm
-----
-
-Codefresh Docker CI/CD service is able to deply the voting application to specified remote swarm cluster.
-
-Add following step to your `codefresh.yml`
-
-```
-version: '1.0'
-
-steps:
-
-...
-
-  deploy_to_swarm:
-    image: codefresh/remote-docker
-    working_directory: ${{main_clone}}
-    commands:
-      - rdocker ${{RDOCKER_HOST}} docker stack deploy --compose-file docker-stack.yml ${{STACK_NAME}}
-    environment:
-      - SSH_KEY=${{SSH_KEY}}
-    when:
-      branch:
-        only:
-          - master
-
-```
-
-Where:
-
-- `RDOCKER_HOST` - remote Docker swarm master machine, accessible over SSH (for example, ubuntu@ec2-public-ip)
-- `STACK_NAME` - is new Docker stack name (use "vote", for example)
-- `SSH_KEY` - private SSH key, used to access Docker swarm master machine
-- `SPLIT_CHAR` - split character, you've used to replace `newline` in SSH key. Recommendation: use `,` (`comma` character).
-
-#### Passing SSH key through ENV variable
-
-Currently in order to pass SSH key through Codefresh UI, you need to convert it to single line string (replacing `newline` with `comma`), like this:
-
-    $ SSH_KEY=$(cat ~/.ssh/my_ssh_key_file | tr '\n' ',')
+[1]: Swarm-mode.md
+[2]: Swarm.md
+[3]: https://github.com/jldeen/example-voting-app/tree/ssh-tunnel
+[4]: https://github.com/Azure/azure-quickstart-templates/tree/master/101-acsengine-swarmmode
+[5]: https://docs.microsoft.com/en-us/azure/container-service/dcos-swarm/container-service-swarm-mode-walkthrough
