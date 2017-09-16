@@ -1,6 +1,6 @@
 # Codefresh | Docs
 
-# Deploy Codefresh to Microsoft Azure 
+# Deploy Codefresh to Microsoft Azure | ACS Engine or DockerCE via ACS
 
 ## Before we begin
 
@@ -63,7 +63,7 @@ The app will be running at the FQDN of the swarm agent pool on port 80 and the r
 > Vote App: http://azure-agent.southcentralus.cloudapp.azure.com
 > Results: http://azure-agent.southcentralus.cloudapp.azure.com:8080
 
-> Note: Ports 80, 443, and 8080 are open by default on your Agent Load Balancer in Azure when using ACS, ACS Engine, or ACS with DockerCE (Preview). To quickly access the FQDN for both your Master and Agent load balancers, run the following command from your local command line:
+> Note: Ports 80, 443, and 8080 are open by default on your Agent Load Balancer in Azure when using ACS Swarm, ACS Engine, or ACS with DockerCE (Preview). To quickly access the FQDN for both your Master and Agent load balancers, run the following command from your local command line:
 
 ```bash
 az acs list --resource-group myResourceGroup --query '[*].{Master:masterProfile.fqdn,Agent:agentPoolProfiles[0].fqdn}' -o table
