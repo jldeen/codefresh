@@ -44,10 +44,6 @@ Once you have your swarm, in your cloned directory run:
       environment:
         - SSH_KEY=${{SSH_KEY}}
         - SSH_PORT=${{SSH_PORT}}
-      when:
-        branch:
-          only:
-            - ssh-tunnel
 
 > RDOCKER_HOST remote Docker swarm master machine, accessible over SSH (for example, azureuser@azure.westcentralus.cloudapp.azure.com)
 
