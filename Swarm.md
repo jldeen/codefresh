@@ -36,10 +36,6 @@ Once you have your swarm, in this directory run:
       environment:
         - SSH_KEY=${{SSH_KEY}}
         - SSH_PORT=${{SSH_PORT}}
-      when:
-        branch:
-          only:
-            - ssh-tunnel
 
 > RDOCKER_HOST remote Docker swarm master machine, accessible over SSH (for example, azureuser@azure.southcentralus.cloudapp.azure.com)
 
@@ -49,9 +45,11 @@ Once you have your swarm, in this directory run:
 
 > SSH_KEY private SSH key, used to access Docker swarm master machine
 
-> SPLIT_CHAR split character, you've used to replace `newline` in SSH key. Recommendation: use `,` (`comma` character).
+> SPLIT_CHAR split character, you've used to replace `newline` in SSH key. Recommendation: use `,` (`comma` character)
 
 > SSH_PORT is port 2200 (default SSH Port for ACS Engine and Azure Container Service with Swarm / DockerCE orchestrator)
+
+> LOCAL_PORT is port 2375 - the port your Docker Swarm Cluster is listening on
 
 > Note: Ports 80, 443, and 8080 are open by default on your Agent Load Balancer in Azure when using ACS Swarm, ACS Engine, or ACS with DockerCE (Preview)
 
