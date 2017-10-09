@@ -95,6 +95,7 @@ Currently in order to pass SSH key through Codefresh UI, you need to convert it 
     * `SSH_KEY`
     * `SPLIT_CHAR`
     * `SSH_PORT`
+    * `LOCAL_PORT`
 
 
 **Notice:** The UI deploy step will run on any build. Make sure that your automated builds run only on a specific branch trigger.
