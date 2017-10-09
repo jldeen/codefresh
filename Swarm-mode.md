@@ -1,6 +1,6 @@
 # Codefresh | Docs
 
-# Deploy Codefresh to Microsoft Azure | ACS Engine or DockerCE via ACS
+# Use Codefresh to Build and Deploy Containers to Microsoft Azure | ACS Engine or DockerCE via ACS
 
 ## Before we begin
 
