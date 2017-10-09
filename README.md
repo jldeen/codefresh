@@ -1,4 +1,4 @@
-Deploy Codefresh to Microsoft Azure 
+Use Codefresh to Build and Deploy Containers to Microsoft Azure
 =========
 
 Codefresh Docker CI/CD service is able to deply the voting application to specified remote swarm cluster on Microsoft Azure. To learn more, please use the following links.
