@@ -1,6 +1,6 @@
 # Codefresh | Docs
 
-# Deploy Codefresh to Microsoft Azure | ACS Swarm (Pre 1.12)
+# Use Codefresh to Build and Deploy Containers to Microsoft Azure | ACS Swarm (Pre 1.12)
 
 ## Before we begin
 
