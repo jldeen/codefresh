@@ -55,6 +55,8 @@ Once you have your swarm, in your cloned directory run:
 
 > SSH_PORT is port 2200 (default SSH Port for ACS Engine and Azure Container Service with Swarm / DockerCE orchestrator)
 
+> LOCAL_PORT is port 2375 (port Docker Swarm-mode cluster is listening on)
+
 The app will be running at the FQDN of the swarm agent pool on port 80 and the results will be accessible at port 8080. Examples:
 > Vote App: http://azure-agent.southcentralus.cloudapp.azure.com
 > Results: http://azure-agent.southcentralus.cloudapp.azure.com:8080
