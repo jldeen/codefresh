@@ -65,15 +65,17 @@ Currently in order to pass SSH key through Codefresh UI, you need to convert it 
 
 > Note: You can also add `ncodefresh/remote-docker:azure` to your Codefresh.yml file as provided in the example above.
 
-2. As a deploy command use `rdocker ${{RDOCKER_HOST}} docker stack deploy --compose-file docker-stack.yml ${{STACK_NAME}}` .
+2. As a deploy command use `rdocker ${{RDOCKER_HOST}} ${{LOCAL_PORT}} docker run -d --name ${{CONTAINER_NAME}} -p 80:80 ${{IMAGE_NAME}}` .
 
 3. Make sure you define the following variables in the pipeline as defined in the previous part:
 
-    * `STACK_NAME`
+    * `CONTAINER_NAME`
+    * `IMAGE_NAME`
     * `RDOCKER_HOST`
     * `SSH_KEY`
     * `SPLIT_CHAR`
     * `SSH_PORT`
+    * `LOCAL_PORT`
 
 ![][6]
 
