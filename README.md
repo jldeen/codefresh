@@ -23,4 +23,4 @@ Getting started
 [2]: Swarm.md
 [3]: https://github.com/jldeen/example-voting-app/tree/ssh-tunnel
 [4]: https://github.com/Azure/azure-quickstart-templates/tree/master/101-acsengine-swarmmode
-[5]: https://docs.microsoft.com/en-us/azure/container-service/dcos-swarm/container-service-swarm-mode-walkthrough
+[5]: https://docs.microsoft.com/azure/container-service/dcos-swarm/container-service-swarm-mode-walkthrough?WT.mc_id=devops-0000-jessde
